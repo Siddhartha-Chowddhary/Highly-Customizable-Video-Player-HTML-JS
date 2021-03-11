@@ -7,6 +7,8 @@ button#playpausebtn{
 	height:18px;
 	cursor:pointer;
 	opacity:0.5;
+	outline: none;
+
 }
 button#playpausebtn:hover{ opacity:1; }
 input#seekslider{ width:90%; }
@@ -15,7 +17,8 @@ input[type='range'] {
     -webkit-appearance: none !important;
     background: rgb(0, 106, 228);
 	border:rgb(0, 106, 228);
-    height:1px;
+	height:1px;
+	outline: none;
 }
 input[type='range']::-webkit-slider-thumb {
     -webkit-appearance: none !important;
@@ -24,10 +27,13 @@ input[type='range']::-webkit-slider-thumb {
     width:15px;
 	border-radius:100%;
 	cursor:pointer;
+	outline: none;
+
 }
 button#mutebtn
 {
     background:url(https://soncur.in/wp-content/uploads/2021/02/unmute.svg) no-repeat;
+	outline: none;
 
     width:20px;
 	height:20px;
