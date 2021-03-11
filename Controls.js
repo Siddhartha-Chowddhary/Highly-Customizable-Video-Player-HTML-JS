@@ -11,9 +11,10 @@ function intializePlayer(){
 	mutebtn = document.getElementById("mutebtn");
 
 	playbtn.addEventListener("click",playPause,false);
-	seekslider.addEventListener("change",vidSeek,true);
+	vid.addEventListener("timeupdate",seektimeupdate,false);
 
-    vid.addEventListener("timeupdate",seektimeupdate,false);
+	seekslider.addEventListener("input",vidSeek,true);
+
 	mutebtn.addEventListener("click",vidmute,false);
 
 }
@@ -27,26 +28,16 @@ function playPause(){
         playbtn.style.background = "url(https://soncur.in/wp-content/uploads/2021/02/play.svg) no-repeat";
 	}
 }
-function vidSeek(){
-	var seekto = vid.duration * (seekslider.value / 100);
-	console.log(seekto);
-	vid.currentTime = seekto;
-}
+
 
 function seektimeupdate()
 {
-	var nt = vid.currentTime * (100 / vid.duration);
-	seekslider.value = nt;
-	var curmins = Math.floor(vid.currentTime / 60);
-	var cursecs = Math.floor(vid.currentTime - curmins * 60);
-	var durmins = Math.floor(vid.duration / 60);
-	var dursecs = Math.floor(vid.duration - durmins * 60);
-	if(cursecs < 10){ cursecs = "0"+cursecs; }
-	if(dursecs < 10){ dursecs = "0"+dursecs; }
-	if(curmins < 10){ curmins = "0"+curmins; }
-	if(durmins < 10){ durmins = "0"+durmins; }
-	curtimetext.innerHTML = curmins+":"+cursecs;
-	durtimetext.innerHTML = durmins+":"+dursecs;
+	seekslider.value = vid.currentTime;
+	seekslider.max = Math.floor(vid.duration);;
+}
+function vidSeek(){
+	vid.currentTime = seekslider.value;
+	seekslider.max = Math.floor(vid.duration);;
 }
 function vidmute(){
 	if(vid.muted){
